@@ -1,5 +1,8 @@
 # Steel Mountain
 
+<img width="447" height="740" alt="image" src="https://github.com/user-attachments/assets/9dfc49b2-6e0f-4771-bd20-550c9aa8a287" />
+
+
 ## Scanning:-
 starting with the nmap scan.
 ```
@@ -229,8 +232,84 @@ session setup failed: NT_STATUS_ACCESS_DENIED
 
 ```
 It is not working.
+
 After reviewing the scan result I found that one suspicious service is running on port 8080 which is HTTPFileServer and the version of this service is HttpFileServer httpd 2.3.
 So, I search for the exploit on google and found the CVE and exploit for the version.
+
+## Foothold:-
+
+Download the exploit and use it:-
+<img width="1908" height="868" alt="exploit" src="https://github.com/user-attachments/assets/c478d2ff-05fc-48dc-9112-afff926bc074" />
+
+We Got The Initial Access...
+Let find our first flag usually the flag is located in the user Directory or Desktop
+```
+PS C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup> cd ..
+PS C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs> cd ..
+cd ..
+cd ../PS C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu> .PS C:\Users\bill\AppData\Roaming\Microsoft\Windows> .
+PS C:\Users\bill\AppData\Roaming> cd ../..
+PS C:\Users\bill> ls
+
+
+    Directory: C:\Users\bill
+
+
+Mode                LastWriteTime     Length Name                                                                      
+----                -------------     ------ ----                                                                      
+d----         9/26/2019  11:29 PM            .groovy                                                                   
+d-r--         9/27/2019   4:07 AM            Contacts                                                                  
+d-r--         9/27/2019   9:08 AM            Desktop                                                                   
+d-r--         9/27/2019   4:07 AM            Documents                                                                 
+d-r--         9/27/2019   4:07 AM            Downloads                                                                 
+d-r--         9/27/2019   4:07 AM            Favorites                                                                 
+d-r--         9/27/2019   4:07 AM            Links                                                                     
+d-r--         9/27/2019   4:07 AM            Music                                                                     
+d-r--         9/27/2019   4:07 AM            Pictures                                                                  
+d-r--         9/27/2019   4:07 AM            Saved Games                                                               
+d-r--         9/27/2019   4:07 AM            Searches                                                                  
+d-r--         9/27/2019   4:07 AM            Videos                                                                    
+
+
+PS C:\Users\bill> cd Desktop
+PS C:\Users\bill\Desktop> ls
+
+
+    Directory: C:\Users\bill\Desktop
+
+
+Mode                LastWriteTime     Length Name                                                                      
+----                -------------     ------ ----                                                                      
+-a---         9/27/2019   5:42 AM         70 user.txt                                                                  
+
+
+PS C:\Users\bill\Desktop> cat user.txt
+b04763b6fcf51fcd7c13abc7db4fd365
+PS C:\Users\bill\Desktop> whoami /priv
+```
+We Get Our First Flag...
+
+#### Questions:-
+Q. Who is the employee of the month?
+answer: Bill Harper
+Q. Scan the machine with nmap. What is the other port running a web server on?
+answer: 8080
+Q. What is the CVE number to exploit this file server?
+answer: 2014-6287
+Q. Take a look at the other web server. What file server is running?
+answer: Rejetto HTTP File Server
+Q. Use Metasploit to get an initial shell. What is the user flag?
+answer: b04763b6fcf51fcd7c13abc7db4fd365
+
+## Privilege Escalation:-
+After getting initial access to the machine. I checked for the Privileges and Cached Credentials and nothing found.
+<img width="819" height="266" alt="priv_creds" src="https://github.com/user-attachments/assets/a6cc649b-c1b5-499e-997b-89c8848a6f1f" />
+
+ searching for the service which is created by the user and for that I can use the Unquoted Service Paths command which I get from Hacktricks:-
+```
+gwmi -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name
+```
+<img width="1900" height="211" alt="Unquoted_service_path" src="https://github.com/user-attachments/assets/a90f583c-8e09-48f3-9275-d6edb6b7b737" />
 
 
 
