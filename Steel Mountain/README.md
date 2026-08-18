@@ -241,7 +241,7 @@ So, I search for the exploit on google and found the CVE and exploit for the ver
 Download the exploit and use it:-
 <img width="1908" height="868" alt="exploit" src="https://github.com/user-attachments/assets/c478d2ff-05fc-48dc-9112-afff926bc074" />
 
-We Got The Initial Access...
+We Got The Initial Access... <br>
 Let find our first flag usually the flag is located in the user Directory or Desktop
 ```
 PS C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup> cd ..
@@ -291,15 +291,15 @@ We Get Our First Flag...
 
 #### Questions:-
 Q. Who is the employee of the month?
-answer: Bill Harper
+answer: Bill Harper <br>
 Q. Scan the machine with nmap. What is the other port running a web server on?
-answer: 8080
+answer: 8080 <br>
 Q. What is the CVE number to exploit this file server?
-answer: 2014-6287
+answer: 2014-6287 <br>
 Q. Take a look at the other web server. What file server is running?
-answer: Rejetto HTTP File Server
+answer: Rejetto HTTP File Server <br>
 Q. Use Metasploit to get an initial shell. What is the user flag?
-answer: b04763b6fcf51fcd7c13abc7db4fd365
+answer: b04763b6fcf51fcd7c13abc7db4fd365 <br>
 
 ## Privilege Escalation:-
 After getting initial access to the machine. I checked for the Privileges and Cached Credentials and nothing found.
