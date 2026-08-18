@@ -311,6 +311,9 @@ gwmi -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Whe
 ```
 <img width="1900" height="211" alt="Unquoted_service_path" src="https://github.com/user-attachments/assets/a90f583c-8e09-48f3-9275-d6edb6b7b737" />
 
+Navigate to the C:\Program Files (x86)\IObit Path to check that we have permission to create any file or not you can simply check by creating a file or using any binary for permission check.
+
+
 
 
 
