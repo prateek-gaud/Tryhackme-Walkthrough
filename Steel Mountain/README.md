@@ -311,9 +311,39 @@ gwmi -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Whe
 ```
 <img width="1900" height="211" alt="Unquoted_service_path" src="https://github.com/user-attachments/assets/a90f583c-8e09-48f3-9275-d6edb6b7b737" />
 
-Navigate to the C:\Program Files (x86)\IObit Path to check that we have permission to create any file or not you can simply check by creating a file or using any binary for permission check.
+For next step we need to get cmd shell and for that I put the nc.exe file in windows machine and connect with my kali linux 
+<img width="1109" height="446" alt="cmd_shell" src="https://github.com/user-attachments/assets/12abf72f-6fa7-40ff-b154-d4c59c8837de" />
 
+<img width="1179" height="135" alt="cmd_access" src="https://github.com/user-attachments/assets/9248c340-df81-4d75-9945-85b09fe8d157" />
 
+And we are ready to go. <br>
+knowing more about service 
+<img width="892" height="278" alt="service_state" src="https://github.com/user-attachments/assets/5f1c243b-0136-4ded-ae95-2bc2c2275883" />
+We can see that this service is created by the user which is running on Local system means system32 <br>
+
+For exploiting this we are going to take advantage of Unquoted Service Path Where we can put our exploit to that path and when service is restarts it automatically run our exploit. Important thing to note that our exploit name must be same as the name of unquoted service path which is C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe so the exploit name should be Advanced.exe <br>
+
+Navigate to the C:\Program Files (x86)\IObit Path to check that we have permission to create any file or not you can simply check by creating a file or using any binary for permission check. <br>
+We have permissions to create any files.
+
+##### Exploitation Step
+1. Creating Payload using msfvenom
+<img width="1429" height="397" alt="creating_payload" src="https://github.com/user-attachments/assets/47b046cc-7f21-4ec0-b90f-5e3f5a8ce2c4" />
+
+2. Transfer The Payload to Target machine
+<img width="996" height="180" alt="transfer_payload" src="https://github.com/user-attachments/assets/0a970ce7-fb56-4f0f-a856-767b3c3be05d" />
+
+<img width="1091" height="411" alt="transfer_payload_two" src="https://github.com/user-attachments/assets/a6216a29-9aa2-4d6f-a84f-c201a1a7ea80" />
+
+3. Start the Netcat listener and Restart the service
+
+<img width="918" height="412" alt="root1" src="https://github.com/user-attachments/assets/a5fdd6b3-e581-4d96-8d64-896b29b2a6e2" />
+
+<img width="921" height="258" alt="root2" src="https://github.com/user-attachments/assets/6fbaa793-3842-4ff7-9011-a3bdbb949f88" />
+
+And We Successfully Solve the machine and get the root shell after that you can navigate to the C:\Users\Administrator\Desktop path and get root flag...
+
+<img width="856" height="516" alt="root_flag" src="https://github.com/user-attachments/assets/4ccec711-ac69-47ed-ab18-283c003487b3" />
 
 
 
