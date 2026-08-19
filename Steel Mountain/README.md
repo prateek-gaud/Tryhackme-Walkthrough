@@ -1,6 +1,6 @@
 # Steel Mountain
 
-<img width="447" height="740" alt="image" src="https://github.com/user-attachments/assets/9dfc49b2-6e0f-4771-bd20-550c9aa8a287" />
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/9dfc49b2-6e0f-4771-bd20-550c9aa8a287" />
 
 
 ## Scanning:-
